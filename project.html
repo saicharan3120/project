@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOUR CHOICE - Interactive Shopping</title>
+<style>
+body {
+    font-family: Arial;
+    background: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+    background: #0a66c2;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.container {
+    width: 95%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.deals-table td {
+    padding: 10px;
+}
+
+.deal, .our-products {
+    position: relative;
+    text-align: center;
+    background: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px gray;
+    width: 200px; /* uniform width for side-by-side layout */
+    flex: 0 0 200px; /* fixed flex basis so rows align */
+}
+
+.deal img, .our-products img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.discount {
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.deal-text {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.buy-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    background: #0a66c2;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.buy-btn:hover {
+    background: #004999;
+}
+
+/* POPUP FORM */
+#popupForm {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.form-box {
+    background: white;
+    padding: 25px;
+    width: 350px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px black;
+    animation: pop 0.4s ease-in-out;
+    position: relative;
+    z-index: 10000;
+}
+
+@keyframes pop {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid gray;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.close-btn {
+    background: red;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    float: right;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#successMsg {
+    margin-top: 10px;
+    color: green;
+    text-align: center;
+    display: none;
+}
+
+/* NEW: FLEX LAYOUT FOR WATCHES/ACCESSORIES */
+.deals {
+    display: flex;
+    flex-wrap: wrap; /* allows wrapping */
+    gap: 15px; /* space between items */
+    justify-content: flex-start; /* align rows consistently to the left */
+    align-items: flex-start;
+}
+</style>
+</head>
+<body>
+
+<div class="header">YOUR CHOICE</div>
+
+<!-- POPUP FORM -->
+<div id="popupForm">
+    <div class="form-box">
+        <button class="close-btn" onclick="closeForm()">X</button>
+        <h3>Enter Your Details</h3>
+        <input type="text" placeholder="Full Name" id="name">
+        <input type="email" placeholder="Email" id="email">
+        <input type="text" placeholder="Mobile Number" id="mobile">
+        <input type="text" placeholder="Address" id="address">
+        <button class="submit-btn" onclick="submitDetails()">Submit</button>
+        <p id="successMsg">✔ Order Placed Successfully!</p>
+    </div>
+</div>
+
+<!-- FIRST SECTION -->
+<div class="container">
+    <marquee direction="right" bgcolor="lightred"><h2>YOUR CHOICE Recommended new deals for you</h2></marquee>
+    <table class="deals-table">
+        <tr>
+            <td>
+                <div class="deal">
+                    <img src="earbuds.webp">
+                    <div class="discount">40% off</div>
+                    <div class="deal-text">Limited Time sale</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+            <td>
+                <div class="deal">
+                    <img src="airpods_max_purple_.png">
+                    <div class="discount">37% off</div>
+                    <div class="deal-text">Limited Time sale</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+            <td>
+                <div class="deal">
+                    <img src="download.jpg">
+                    <div class="discount">37% off</div>
+                    <div class="deal-text">Limited Time sale</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+            <td>
+                <div class="deal">
+                    <img src="shopping.webp">
+                    <div class="discount">37% off</div>
+                    <div class="deal-text">Limited Time sale</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+            <td>
+                <div class="deal">
+                    <img src="homepod-select-.jpg">
+                    <div class="discount">71% off</div>
+                    <div class="deal-text">Limited Time sale</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- SECOND SECTION -->
+<div class="container">
+    <marquee direction="right" bgcolor="LIGHTBLUE"><h3>OUR BRAND NEW CLOTHING PRODUCTS</h3></marquee>
+    <table class="deals-table">
+        <tr>
+            <td>
+                <div class="our-products">
+                    <img src="j.jpg">
+                    <div class="discount">30% off</div>
+                    <div class="deal-text">Top sales</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+            <td>
+                <div class="our-products">
+                    <img src="t,jpg.jpg">
+                    <div class="discount">37% off</div>
+                    <div class="deal-text">Top sales</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+            <td>
+                <div class="our-products">
+                    <img src="l.jpg">
+                    <div class="discount">37% off</div>
+                    <div class="deal-text">Top sales</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+            <td>
+                <div class="our-products">
+                    <img src="k.jpg">
+                    <div class="discount">37% off</div>
+                    <div class="deal-text">Limited Time sale</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+            <td>
+                <div class="our-products">
+                    <img src="jj.jpg">
+                    <div class="discount">37% off</div>
+                    <div class="deal-text">Limited Time sale</div>
+                    <button class="buy-btn" onclick="openForm()">Buy Now</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- THIRD SECTION -->
+<div class="container">
+    <marquee direction="right" bgcolor="LIGHTBLUE"><h4>CREATE YOUR STYLE WITH OUR ACCESSORIES</h4></marquee>
+    <div class="deals">
+        <div class="deal">
+            <img src="H.JPG" width="200" height="200">
+            <div class="discount">40% off</div>
+            <div class="deal-text">Limited Time sale</div>
+            <button class="buy-btn" onclick="openForm()">Buy Now</button>
+        </div>
+        <div class="deal">
+            <img src="FF.JPG" width="200" height="200">
+            <div class="discount">40% off</div>
+            <div class="deal-text">Limited Time sale</div>
+            <button class="buy-btn" onclick="openForm()">Buy Now</button>
+        </div>
+        <div class="deal">
+            <img src="MM.JPG" width="200" height="200">
+            <div class="discount">40% off</div>
+            <div class="deal-text">Limited Time sale</div>
+            <button class="buy-btn" onclick="openForm()">Buy Now</button>
+        </div>
+        <div class="deal">
+            <img src="PP.JPG" width="200" height="200">
+            <div class="discount">40% off</div>
+            <div class="deal-text">Limited Time sale</div>
+            <button class="buy-btn" onclick="openForm()">Buy Now</button>
+        </div>
+        <div class="deal">
+            <img src="NN.JPG" width="200" height="200">
+            <div class="discount">40% off</div>
+            <div class="deal-text">Limited Time sale</div>
+            <button class="buy-btn" onclick="openForm()">Buy Now</button>
+        </div>
+        <div class="deal">
+            <img src="KK.JPG" width="200" height="200">
+            <div class="discount">40% off</div>
+            <div class="deal-text">Limited Time sale</div>
+            <button class="buy-btn" onclick="openForm()">Buy Now</button>
+        </div>
+    </div>
+</div>
+
+<script>
+function openForm() {
+    document.getElementById("popupForm").style.display = "flex";
+}
+function closeForm() {
+    document.getElementById("popupForm").style.display = "none";
+}
+function submitDetails() {
+    document.getElementById("successMsg").style.display = "block";
+    setTimeout(() => {
+        closeForm();
+        document.getElementById("successMsg").style.display = "none";
+    }, 2000);
+}
+</script>
+
+</body>
+</html>
